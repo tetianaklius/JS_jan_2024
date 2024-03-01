@@ -96,7 +96,7 @@ let arr_obj = [
 
 create_list_obj(arr_obj);
 
-// - створити функцію яка повертає найменьше число з масиву
+// - створити функцію яка повертає найменше число з масиву
 
 function min_num(arr) {
     let res = arr[0];
@@ -121,12 +121,33 @@ function sum(arr) {
     return res;
 }
 
-document.write(sum(arr_2));
+document.write(`<div>${sum(arr_2)}</div>`);
 
 // - створити функцію swap(arr,index1,index2). Функція міняє місцями заняення у відаовідних індексах
 // Приклад  swap([11,22,33,44],0,1) //=> [22,11,33,44]
 
+function swap(arr, index1, index2) {
+    let cur = arr[index1];
+    arr[index1] = arr[index2];
+    arr[index2] = cur;
+    return arr;
+}
 
+arr_3 = [12, 13, 15, 155];
+document.write(`<div>${swap(arr_3, 0, 1)}`);
 
 // - Написати функцію обміну валюти exchange(sumUAH,currencyValues,exchangeCurrency)
 // Приклад exchange(10000,[{currency:'USD',value:40},{currency:'EUR',value:42}],'USD') // => 250
+
+function exchange(sumUAH, currencyValues, exchangeCurrency) {
+    for (let item of currencyValues) {
+        if (item.currency === exchangeCurrency) {
+            let value = item.value;
+            return sumUAH / value;
+        }
+    }
+}
+
+document.write(`<div>${exchange(10000, [{currency: 'USD', value: 40}, {currency: 'EUR', value: 42}], 'USD')}</div>`);
+
+document.write(`<div>${exchange(100000, [{currency: 'EUR', value: 20}, {currency: 'AUS', value: 45}], 'EUR')}</div>`);
