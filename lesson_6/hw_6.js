@@ -1,72 +1,72 @@
-// // - Знайти та вивести довижину стрінгових значень
-// // 'hello world', 'lorem ipsum', 'javascript is cool'
-//
-// let str_1 = "hello world";
-// let str_2 = "lorem ipsum";
-// let str_3 = "javascript is cool";
-//
-// document.write(`<div>${str_1.length}, ${str_2.length}, ${str_3.length}</div>`);
-//
-// // - Перевести до великого регістру наступні стрінгові значення
-// // 'hello world', 'lorem ipsum', 'javascript is cool'
-//
-// let str_1_upper = str_1.toUpperCase();
-// let str_2_upper = str_2.toUpperCase();
-// let str_3_upper = str_3.toUpperCase();
-//
-// document.write(`<div>${str_1_upper}</div>`);
-// document.write(`<div>${str_2_upper}</div>`);
-// document.write(`<div>${str_3_upper}</div>`);
-//
-// // - Перевести до нижнього регістру настипні стрінгові значення
-// // 'HELLO WORLD', 'LOREM IPSUM', 'JAVASCRIPT IS COOL'
-//
-// str_4 = "HELLO WORLD";
-// str_5 = "LOREM IPSUM";
-// str_6 = "JAVASCRIPT IS COOL";
-//
-// str_4_lower = str_4.toLowerCase();
-// str_5_lower = str_5.toLowerCase();
-// str_6_lower = str_6.toLowerCase();
-//
-// document.write(`<div>${str_4_lower}</div>`);
-// document.write(`<div>${str_5_lower}</div>`);
-// document.write(`<div>${str_6_lower}</div>`);
-//
-// // - Є "брудна" стрінга let str = ' dirty string   ' . Почистити її від зайвих пробілів.
-//
-// let str = " dirty string   ";
-//
-// const clean_space_str = str => {
-//     let str_split = str.split(" ");
-//     for (let item of str_split) {
-//         if (item.length >= 1) {
-//             str_split.join(" ");
-//         }
-//     }
-//     return str;
-// }
-//
-// document.write(`<div>${clean_space_str(str)}</div>`);
-//
-// // or
-//
-// const clean_space_str_2 = str => {
-//     str.replaceAll("  ", " ");
-//     if (str.startsWith(" ")) {
-//         str.replace(str[0], "");
-//     }
-//     if (str.endsWith(" ")) {
-//         str.replace(str[-1], "");
-//     }
-//     return str;
-// }
-//
-// document.write(`<div>${clean_space_str_2(str)}</div>`);
-//
-// // - Напишіть функцію stringToarray(str), яка перетворює рядок на масив слів.
-// //     let str = 'Ревуть воли як ясла повні';
-// // let arr = stringToarray(str); ['Ревуть', 'воли', 'як', 'ясла', 'повні']
+// - Знайти та вивести довижину стрінгових значень
+// 'hello world', 'lorem ipsum', 'javascript is cool'
+
+let str_1 = "hello world";
+let str_2 = "lorem ipsum";
+let str_3 = "javascript is cool";
+
+document.write(`<div>${str_1.length}, ${str_2.length}, ${str_3.length}</div>`);
+
+// - Перевести до великого регістру наступні стрінгові значення
+// 'hello world', 'lorem ipsum', 'javascript is cool'
+
+let str_1_upper = str_1.toUpperCase();
+let str_2_upper = str_2.toUpperCase();
+let str_3_upper = str_3.toUpperCase();
+
+document.write(`<div>${str_1_upper}</div>`);
+document.write(`<div>${str_2_upper}</div>`);
+document.write(`<div>${str_3_upper}</div>`);
+
+// - Перевести до нижнього регістру настипні стрінгові значення
+// 'HELLO WORLD', 'LOREM IPSUM', 'JAVASCRIPT IS COOL'
+
+str_4 = "HELLO WORLD";
+str_5 = "LOREM IPSUM";
+str_6 = "JAVASCRIPT IS COOL";
+
+str_4_lower = str_4.toLowerCase();
+str_5_lower = str_5.toLowerCase();
+str_6_lower = str_6.toLowerCase();
+
+document.write(`<div>${str_4_lower}</div>`);
+document.write(`<div>${str_5_lower}</div>`);
+document.write(`<div>${str_6_lower}</div>`);
+
+// - Є "брудна" стрінга let str = ' dirty string   ' . Почистити її від зайвих пробілів.
+
+let str = " dirty string   ";
+
+const clean_space_str = str => {
+    let str_split = str.split(" ");
+    for (let item of str_split) {
+        if (item.length >= 1) {
+            str_split.join(" ");
+        }
+    }
+    return str;
+}
+
+document.write(`<div>${clean_space_str(str)}</div>`);
+
+// or
+
+const clean_space_str_2 = str => {
+    str.replaceAll("  ", " ");
+    if (str.startsWith(" ")) {
+        str.replace(str[0], "");
+    }
+    if (str.endsWith(" ")) {
+        str.replace(str[-1], "");
+    }
+    return str;
+}
+
+document.write(`<div>${clean_space_str_2(str)}</div>`);
+
+// - Напишіть функцію stringToarray(str), яка перетворює рядок на масив слів.
+//     let str = 'Ревуть воли як ясла повні';
+// let arr = stringToarray(str); ['Ревуть', 'воли', 'як', 'ясла', 'повні']
 
 let stringToArray = str => str.split(" ");
 
@@ -318,6 +318,18 @@ let coursesArray = [
 ];
 // --написати пошук всіх об'єктів, в який в modules є sass
 
+const find_sass = arr => arr.filter(obj => obj.modules.includes("sass"));
 
+console.log(find_sass(coursesArray));
 
 // --написати пошук всіх об'єктів, в який в modules є docker
+
+const find_docker = arr => arr.filter(obj => obj.modules.includes("docker"));
+
+console.log(find_docker(coursesArray));
+
+// or
+const find_module = (arr, module) => arr.filter(obj => obj.modules.includes(module));
+
+console.log(find_module(coursesArray, "sass"));
+console.log(find_module(coursesArray, "docker"));
