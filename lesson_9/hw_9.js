@@ -235,3 +235,33 @@ let coursesArray = [
         modules: ['html', 'css', 'js', 'mysql', 'mongodb', 'react', 'angular', 'aws', 'docker', 'git', 'sass']
     }
 ];
+
+for (const course of coursesArray) {
+    let course_info = document.createElement("div");
+    for (const key in course) {
+        let key_info = document.createElement("div");
+
+        if (key === "monthDuration") {
+            key_info.classList.add("monthDuration");
+        }
+        if (key === "hourDuration") {
+            key_info.classList.add("hourDuration");
+        }
+        if (key === "modules") {
+            key_info.classList.add("modules");
+            let ul = document.createElement("ul");
+            ul.innerHTML = `<b>${key}</b>`;
+            key_info.append(ul);
+
+            for (let item of course[key]) {
+                let li = document.createElement("li");
+                li.innerHTML = `${item}`;
+                ul.append(li);
+            }
+        } else {
+            key_info.innerHTML = `<b>${key}:</b> ${course[key]}`;
+        }
+        course_info.append(key_info);
+    }
+    document.body.append(course_info);
+}
