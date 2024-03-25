@@ -1,53 +1,53 @@
 // - взяти https://dummyjson.com/docs/carts та вивести інформацію про всі корзини. Відобразити всі поля кожної корзини.
 
-fetch('https://dummyjson.com/carts')
-    .then(res => res.json())
-    .then(value => {
-        let carts = value.carts;
-        let total = value.total;
-        let carts_div = document.createElement("div");
-        carts_div.innerText = `total: ${total} carts`;
-
-        for (const cart of carts) {
-            let cart_div = document.createElement("div");
-            cart_div.innerHTML = `<br><b>CART</b>`;
-
-            for (const cart_key in cart) {
-                if (cart_key === "products") {
-                    let products_div = document.createElement("div");
-                    products_div.innerText = `${cart_key}:`;
-                    let products = cart[cart_key];
-
-                    for (const product of products) {
-                        let product_ul = document.createElement("ul");
-
-                        for (const key in product) {
-                            if (key === "thumbnail") {
-                                let img = document.createElement("img");
-                                img.src = product[key];
-                                product_ul.appendChild(img);
-                            } else {
-                                let li = document.createElement("li");
-                                li.innerHTML = `${key}: ${product[key]}`
-                                product_ul.appendChild(li);
-                            }
-                        }
-                        products_div.appendChild(product_ul);
-                        cart_div.appendChild(products_div);
-                    }
-                } else {
-                    let div = document.createElement("div");
-                    div.innerText = `${cart_key}: ${cart[cart_key]}`;
-                    cart_div.appendChild(div);
-                    if (cart_key === "id") {
-                        div.classList.add("bold");
-                    }
-                }
-            }
-            carts_div.appendChild(cart_div);
-        }
-        document.body.appendChild(carts_div);
-    });
+// fetch('https://dummyjson.com/carts')
+//     .then(res => res.json())
+//     .then(value => {
+//         let carts = value.carts;
+//         let total = value.total;
+//         let carts_div = document.createElement("div");
+//         carts_div.innerText = `total: ${total} carts`;
+//
+//         for (const cart of carts) {
+//             let cart_div = document.createElement("div");
+//             cart_div.innerHTML = `<br><b>CART</b>`;
+//
+//             for (const cart_key in cart) {
+//                 if (cart_key === "products") {
+//                     let products_div = document.createElement("div");
+//                     products_div.innerText = `${cart_key}:`;
+//                     let products = cart[cart_key];
+//
+//                     for (const product of products) {
+//                         let product_ul = document.createElement("ul");
+//
+//                         for (const key in product) {
+//                             if (key === "thumbnail") {
+//                                 let img = document.createElement("img");
+//                                 img.src = product[key];
+//                                 product_ul.appendChild(img);
+//                             } else {
+//                                 let li = document.createElement("li");
+//                                 li.innerHTML = `${key}: ${product[key]}`
+//                                 product_ul.appendChild(li);
+//                             }
+//                         }
+//                         products_div.appendChild(product_ul);
+//                         cart_div.appendChild(products_div);
+//                     }
+//                 } else {
+//                     let div = document.createElement("div");
+//                     div.innerText = `${cart_key}: ${cart[cart_key]}`;
+//                     cart_div.appendChild(div);
+//                     if (cart_key === "id") {
+//                         div.classList.add("bold");
+//                     }
+//                 }
+//             }
+//             carts_div.appendChild(cart_div);
+//         }
+//         document.body.appendChild(carts_div);
+//     });
 
 
 //     - взяти https://dummyjson.com/docs/recipes та вивести інформацію про всі рецепти. Інгредієнти повинні бути список під час відображення.
@@ -69,7 +69,7 @@ function show_recipes(recipes) {
         for (const key in recipe) {
             let key_div = document.createElement("div");
 
-            if (typeof recipe[key] === "object") {
+            if (Array.isArray(recipe[key])) {
                 let ol = document.createElement("ol");
                 ol.innerHTML = `${key}:`;
                 for (const item of recipe[key]) {
