@@ -84,9 +84,20 @@ next_button.innerText = "next";
 // v1 ---------------------------------
 
 // arr_block.append(prev_button, next_button);
+// let div = document.createElement("div");
+// arr_block.appendChild(div);
 //
 // window.onload = function () {                                                                         // !
 //     localStorage.clear()
+// };
+// let arr_slice = arr.slice(0, 10);
+// show_elem(start, arr_slice, div);
+//
+// next_button.onclick = function () {
+//     show_elem(next, arr, div);
+// };
+// prev_button.onclick = function () {
+//     show_elem(prev, arr, div);
 // };
 //
 // function prev(length) {
@@ -112,10 +123,6 @@ next_button.innerText = "next";
 //     return last_elem_index;
 // }
 //
-// let arr_slice = arr.slice(0, 10);
-//
-// show_elem(start, arr_slice, arr_block);
-//
 // function start() {
 //     return 0;
 // }
@@ -123,66 +130,62 @@ next_button.innerText = "next";
 // function show_elem(func, arr, HTML_elem) {
 //
 //     let i = func(arr.length);
-//     let arr_new_slice = arr.slice(i, i + 10)
-//
+//     if (i<arr.length) {
+//     HTML_elem.innerText="";
+//     let arr_new_slice = arr.slice(i, i + 10);
 //
 //     for (const elem of arr_new_slice) {
 //         let elem_div = document.createElement("div");
-//         elem_div.innerText = `${elem}`
+//         elem_div.innerText = `${elem}`;
 //         HTML_elem.appendChild(elem_div);
-//     }
+//     }}
 // }
-//
-// next_button.onclick = function () {
-//     show_elem(next, arr, arr_block)
-// };
-//
-// prev_button.onclick = function () {
-//     show_elem(prev, arr, arr_block)
-// };
+
 
 // v2 ---------------------------------
 
-// let start_ = 0;
-// let step = 10;
-// let limit = start_ + step;
-//
-// let arr_slice = arr.slice(0, 10);
-// let arr_start = document.createElement("div");
-// arr_start.innerText = `${arr_slice.join("\n")}`;
-//
-// arr_block.append(prev_button, next_button);
-// arr_block.appendChild(arr_start);
-//
-//
-// next_button.onclick = function () {
-//     if (limit < arr.length) {
-//         start_ = limit;
-//         limit = limit + step;
-//         for (let i = start_; i < limit; i++) {
-//             if (i < arr.length) {
-//                 let elem_div = document.createElement("div");
-//                 elem_div.innerText = `${arr[i]}`
-//                 arr_block.appendChild(elem_div);
-//             }
-//         }
-//     }
-// }
-//
-// prev_button.onclick = function () {
-//     if (start_ > 0) {
-//         limit = limit - step;
-//         start_ = start_ - step;
-//
-//         for (let i = start_; i < limit; i++) {
-//             if (start_ >= 0) {
-//                 let elem_div = document.createElement("div");
-//                 elem_div.innerText = `${arr[i]}`
-//                 arr_block.appendChild(elem_div);
-//             }
-//         }
-//     }
-// }
+let start_ = 0;
+let step = 10;
+let limit = start_ + step;
+
+let arr_slice = arr.slice(0, 10);
+let arr_start = document.createElement("div");
+arr_start.innerText = `${arr_slice.join("\n")}`;
+
+arr_block.append(prev_button, next_button);
+arr_block.appendChild(arr_start);
+
+
+next_button.onclick = function () {
+    if (limit < arr.length) {
+        arr_start.innerText = "";
+        start_ = limit;
+        limit = limit + step;
+        for (let i = start_; i < limit; i++) {
+            if (i < arr.length) {
+                let elem_div = document.createElement("div");
+                elem_div.innerText = `${arr[i]}`
+                arr_start.appendChild(elem_div);
+            }
+        }
+    }
+}
+
+prev_button.onclick = function () {
+    if (start_ > 0) {
+        arr_start.innerText = "";
+        limit = limit - step;
+        start_ = start_ - step;
+
+        for (let i = start_; i < limit; i++) {
+            if (start_ >= 0) {
+                let elem_div = document.createElement("div");
+                elem_div.innerText = `${arr[i]}`
+                arr_start.appendChild(elem_div);
+            }
+        }
+    }
+}
 
 // - Створити довільний елемент з id = text та створити кнопку.Використовуючи JavaScript, зробіть так, щоб при натисканні на кнопку зникав елемент з id="text".
 
@@ -251,7 +254,7 @@ function create_table(input_1, input_2, input_3) {
         let o_index = 0;
 
         for (let i = 0; i < keys_quantity; i++) {
-            if (values[v_index] === "") {
+            if (!values[v_index]) {
                 obj[o_index] = "empty";
             } else {
                 obj[o_index] = values[v_index];
